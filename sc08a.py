@@ -1,6 +1,5 @@
 import uasyncio as asyncio
 from machine import UART
-from time import sleep
 
 class Sc08aController:
     _baudrate = 9600
@@ -25,7 +24,7 @@ class Sc08aController:
 
         self._writer.write(buffer)
         await self._writer.drain()
-        await asyncio.sleep(0.5)
+        await asyncio.sleep_ms(250)
 
     async def _read_bytes(self, len = 1):
         if not self._reader_created:
